@@ -20,7 +20,7 @@
     <header class="header">
       <div class="container navbar">
         <a href="#" class="logo">
-          <img src="assets/img/logo-dark.png" alt="Logo Image" />
+          <img src="assets/logo-dark.png" alt="Logo Image" />
         </a>
 
         <div class="nav-cta">
@@ -181,10 +181,7 @@
           Join thousands of students who are already transforming their careers
           with StepUp Academy.
         </p>
-        <a
-          href="#"
-          class="btn btn-primary"
-          onclick="openModal(); return false;"
+        <a href="#" class="btn btn-primary" onclick="openModal(); return false;"
           >Register Now</a
         >
       </div>
@@ -208,51 +205,40 @@
           </div>
           <button class="close-btn" onclick="closeModal()">&times;</button>
         </div>
-        
+
         <!-- Choice Step -->
         <div class="modal-step choice-step active">
-          <a href="register.html" class="modal-btn btn-primary" onclick="showRegisterStep()">New Register</a>
-          <br>
+          <a
+            href="register.html"
+            class="modal-btn btn-primary"
+            onclick="showRegisterStep()"
+            >New Register</a>
+          <br />
           <p>If Already registered</p>
-          <a href="payment-page.html" class="modal-btn modal-btn-outline" onclick="showPaymentStep()">Complete Payment</a>
+          <a
+            href="payment-page.html"
+            class="modal-btn modal-btn-outline"
+            onclick="showPaymentStep()">Complete Payment</a>
         </div>
       </div>
     </div>
     <script>
       function openModal() {
-        document.getElementById('registerModal').classList.add('active');
-        showChoiceStep();
-        document.body.style.overflow = 'hidden';
+        document.getElementById("registerModal").classList.add("active");
+        document.body.style.overflow = "hidden";
       }
       function closeModal() {
-        document.getElementById('registerModal').classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
-      function showChoiceStep() {
-        document.querySelector('.choice-step').classList.add('active');
-        document.querySelector('.register-step').classList.remove('active');
-        document.querySelector('.payment-step').classList.remove('active');
-      }
-      function showRegisterStep() {
-        document.querySelector('.choice-step').classList.remove('active');
-        document.querySelector('.register-step').classList.add('active');
-        document.querySelector('.payment-step').classList.remove('active');
-      }
-      function showPaymentStep() {
-        document.querySelector('.choice-step').classList.remove('active');
-        document.querySelector('.register-step').classList.remove('active');
-        document.querySelector('.payment-step').classList.add('active');
+        document.getElementById("registerModal").classList.remove("active");
+        document.body.style.overflow = "auto";
       }
       // Close modal when clicking outside content
-      document.getElementById('registerModal').addEventListener('click', function(e) {
-        if (e.target === this) { closeModal(); }
-      });
-      // Handle form submission (prevent default for now)
-      document.getElementById('registerForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Thank you for registering! We will contact you soon.');
-        closeModal();
-      });
+      document
+        .getElementById("registerModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeModal();
+          }
+        });
     </script>
   </body>
 </html>

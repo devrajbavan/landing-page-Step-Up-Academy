@@ -57,9 +57,7 @@ ul {
     list-style: none;
 }
 
-/* ============================================
-   UTILITIES
-   ============================================ */
+/* UTILITIES */
 
 .container {
     max-width: var(--container-width);
@@ -153,9 +151,7 @@ ul {
     margin-right: auto;
 }
 
-/* ============================================
-   HEADER & NAVIGATION
-   ============================================ */
+/* HEADER & NAVIGATION */
 
 .header {
     background-color: rgba(2, 6, 23, 0.85);
@@ -186,9 +182,7 @@ ul {
     width: auto;
 }
 
-/* ============================================
-   HERO SECTION (Landing Page)
-   ============================================ */
+/* HERO SECTION (Landing Page) */
 
 .hero {
     padding-top: var(--header-height);
@@ -236,7 +230,7 @@ ul {
 .hero-text h1 span {
     background: linear-gradient(to right, var(--primary-teal), #34d399);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: white;
     background-clip: text;
 }
 
@@ -275,9 +269,7 @@ ul {
     letter-spacing: 1px;
 }
 
-/* ============================================
-   ABOUT SECTION
-   ============================================ */
+/* ABOUT SECTION */
 
 .about-section {
     padding: 8rem 0;
@@ -338,9 +330,7 @@ ul {
     opacity: 0.1;
 }
 
-/* ============================================
-   COURSES SECTION
-   ============================================ */
+/* COURSES SECTION */
 
 .courses-section {
     padding: 6rem 0;
@@ -451,18 +441,14 @@ ul {
     justify-content: center;
 }
 
-/* ============================================
-   FEATURES SECTION
-   ============================================ */
+/* FEATURES SECTION */
 
 .features {
     padding: 8rem 0;
     background-color: white;
 }
 
-/* ============================================
-   CTA SECTION
-   ============================================ */
+/* CTA SECTION */
 
 .cta {
     padding: 8rem 0;
@@ -502,9 +488,7 @@ ul {
     margin-bottom: 3rem;
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* FOOTER */
 
 .footer {
     background-color: var(--bg-dark);
@@ -551,9 +535,7 @@ ul {
     font-size: 0.9rem;
 }
 
-/* ============================================
-   MODAL STYLES (Index Page)
-   ============================================ */
+/* MODAL STYLES (Index Page) */
 
 .modal-overlay {
     position: fixed;
@@ -685,9 +667,7 @@ ul {
     box-shadow: 0 0 0 3px var(--primary-teal-glow);
 }
 
-/* ============================================
-   REGISTRATION & PAYMENT PAGES
-   ============================================ */
+/* REGISTRATION & PAYMENT PAGES */
 
 /* Page Background */
 body.register-page,
@@ -990,7 +970,7 @@ body.payment-page::before {
     
 /* Image Section */
 .registration-image-section {
-    background: url('assets/registration-img.jpeg') center/cover;
+    background: url('registration-img.jpeg') center/cover;
     position: relative;
 }
 
@@ -1003,9 +983,7 @@ body.payment-page::before {
     background: linear-gradient(135deg, rgba(79, 71, 95, 0.1) 0%, rgba(80, 32, 100, 0.429) 100%);
 }
 
-/* ============================================
-   PAYMENT PAGE MODAL (Student Details)
-   ============================================ */
+/* PAYMENT PAGE MODAL (Student Details) */
 
 body.payment-page .modal-overlay {
     background-color: rgba(2, 6, 23, 0.85);
@@ -1201,9 +1179,7 @@ body.payment-page .modal-header h2 {
     transform: translateX(5px);
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
+/* RESPONSIVE DESIGN */
 
 @media (max-width: 1250px) {
 
@@ -1439,9 +1415,7 @@ body.payment-page .modal-header h2 {
     }
 }
 
-/* ============================================
-   PAYMENT SUMMARY & INSTALLMENT TABLE
-   ============================================ */
+/* PAYMENT SUMMARY & INSTALLMENT TABLE */
 
 .payment-summary-grid {
     display: grid;
@@ -1593,10 +1567,8 @@ body.payment-page .modal-header h2 {
     }
 }
 
- 
- /* ============================================
-   PAYMENT RESULT PAGES (SUCCESS & FAILURE)
-   ============================================ */
+
+/* PAYMENT RESULT PAGES (SUCCESS & FAILURE) */
 
 .result-card {
     text-align: center;
@@ -1774,6 +1746,8 @@ body.payment-page .modal-header h2 {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    justify-self: center;
+    justify-content: center;
 }
 
 .btn-primary {
