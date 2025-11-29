@@ -1089,13 +1089,6 @@ body.payment-page .modal-header h2 {
     color: #1f2937;
 }
 
-@media (max-width: 640px) {
-    .student-details-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-}
-
 .detail-row:last-child {
     border-bottom: none;
 }
@@ -1206,7 +1199,7 @@ body.payment-page .modal-header h2 {
     
     .register-form {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 5rem;
     }
     
     .modern-form {
@@ -1552,6 +1545,11 @@ body.payment-page .modal-header h2 {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
+
+    .student-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
     
     .summary-item {
         flex-direction: row;
@@ -1875,6 +1873,23 @@ body.payment-page .modal-header h2 {
     .result-actions {
         flex-direction: column;
         width: 100%;
+    }
+
+    .registration-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 600px;
+    }
+
+    .register-form{
+        display: flex;
+        flex-direction: column;
+        min-height: 600px;
+        gap: 4rem;
+    }
+
+    .registration-image-section{
+        display: none;
     }
 
     .btn-primary,
