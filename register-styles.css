@@ -1,0 +1,331 @@
+/* Registration Page - Premium Modern Design */
+
+/* Page Background */
+body.register-page {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.register-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('assets/hero-img.avif') center/cover;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.registration-container {
+    width: 100%;
+    max-width: 1300px;
+    position: relative;
+    z-index: 1;
+}
+
+.registration-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.registration-header {
+    background: linear-gradient(135deg, #1e293b 0%, #2d2d2d 100%);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.registration-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.registration-header h1 {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Body with Split Layout */
+.registration-body {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    min-height: 600px;
+}
+
+/* Form Section */
+.registration-form-section {
+    padding: 3rem;
+    background: white;
+}
+
+.modern-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.input-wrapper.full-width {
+    grid-column: span 2;
+}
+
+/* Input Styling */
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    padding: 1rem 0.5rem 0.5rem;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    background: transparent;
+    font-size: 1.3rem;
+    font-family: 'Outfit', sans-serif;
+    color: #1f2937;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus,
+.input-wrapper input.has-value,
+.input-wrapper select.has-value {
+    border-bottom-color: #a52a2a;
+}
+
+/* Animated Border */
+.input-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a52a2a, #d4423e);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-wrapper input:focus ~ .input-border,
+.input-wrapper select:focus ~ .input-border {
+    width: 100%;
+}
+
+/* Label Styling */
+.input-wrapper label {
+    position: absolute;
+    left: 0.5rem;
+    top: 1rem;
+    color: #9ca3af;
+    font-size: 1.3rem;
+    font-weight: 400;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left top;
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input.has-value + label,
+.input-wrapper select:focus + label,
+.input-wrapper select.has-value + label,
+.input-wrapper label.date-label,
+.input-wrapper label.select-label {
+    top: 0;
+    font-size: 0.8rem;
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Select Specific */
+.input-wrapper select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    padding-right: 2rem;
+}
+
+.input-wrapper select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a52a2a' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+
+/* Submit Button */
+.submit-button {
+    width: 70%;
+    grid-column: span 2;
+    margin-top: 1rem;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #10b981 0%, #a57b7b 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    gap: 1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(165, 42, 42, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(165, 42, 42, 0.4);
+}
+
+.submit-button:active {
+    transform: translateY(-1px);
+}
+
+.submit-button i {
+    transition: transform 0.3s;
+}
+
+.submit-button:hover i {
+    transform: translateX(5px);
+}
+
+/* Image Section */
+.registration-image-section {
+    /* background: url('assets/registration-bg.jpg') center/cover; */
+    /* background: url('assets/IMG_3507.jpg') center/cover; */
+    /* background: url('assets/WhatsApp Image 2025-11-29 at 11.50.53.jpeg') center/cover; */
+    background: url('assets/WhatsApp Image 2025-11-29 at 11.50.13.jpeg') center/cover;
+    position: relative;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(79, 71, 95, 0.1) 0%, rgba(80, 32, 100, 0.429) 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    
+    .registration-form-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .modern-form {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .input-wrapper.full-width {
+        grid-column: span 1;
+    }
+    
+    .submit-button {
+        grid-column: span 1;
+    }
+    
+    .registration-header h1 {
+        font-size: 1.25rem;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 768px) {
+    .registration-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .registration-image-section {
+        height: 200px;
+        order: -1;
+    }
+    
+    .registration-form-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .modern-form {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .input-wrapper.full-width {
+        grid-column: span 1;
+    }
+    
+    .submit-button {
+        grid-column: span 1;
+    }
+    
+    .registration-header h1 {
+        font-size: 1.25rem;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    body.register-page {
+        padding: 1rem 0.5rem;
+    }
+    
+    .registration-form-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .modern-form {
+        gap: 1.25rem;
+    }
+}

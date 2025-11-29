@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StepUp Academy | Student Registration</title>
+    <meta name="description" content="Register for StepUp Academy courses." />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="register-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="register-page">
+    <div class="registration-container">
+      <div class="registration-card">
+        <!-- Header -->
+        <div class="registration-header">
+          <h1>STUDENT REGISTRATION FORM</h1>
+        </div>
+
+        <!-- Body with split layout -->
+        <div class="registration-body">
+          <!-- Left side - Form -->
+          <div class="registration-form-section">
+            <form id="registrationForm" class="modern-form">
+              <!-- Full Name -->
+              <div class="input-wrapper full-width">
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  required
+                  autocomplete="name"
+                />
+                <label for="fullName">Full Name</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Email -->
+              <div class="input-wrapper">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                />
+                <label for="email">Email Address</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Phone -->
+              <div class="input-wrapper">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  autocomplete="tel"
+                />
+                <label for="phone">Phone Number</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Date of Birth -->
+              <div class="input-wrapper">
+                <input type="date" id="dob" name="dob" required />
+                <label for="dob" class="date-label">Date of Birth</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Course Selection -->
+              <div class="input-wrapper">
+                <select id="course" name="course" required>
+                  <option value="" disabled selected></option>
+                  <optgroup label="Foundation Courses">
+                    <option value="class_10">Class 10th Foundation</option>
+                    <option value="class_12">Class 12th Foundation</option>
+                  </optgroup>
+                  <optgroup label="JEE Preparation">
+                    <option value="jee_90">JEE 90 Days Crash Course</option>
+                    <option value="jee_20">JEE 20 Days Crash Course</option>
+                    <option value="jee_12">Class 12 JEE</option>
+                    <option value="jee_11">Class 11 JEE</option>
+                  </optgroup>
+                  <optgroup label="NEET Preparation">
+                    <option value="neet_45">NEET 45 Days Crash Course</option>
+                  </optgroup>
+                </select>
+                <label for="course" class="select-label"
+                  >Course Selection</label
+                >
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="submit-button">
+                <span>Submit Registration</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Right side - Image -->
+          <div class="registration-image-section">
+            <div class="image-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add 'has-value' class when input has content
+      document
+        .querySelectorAll(".modern-form input, .modern-form select")
+        .forEach((input) => {
+          // Check on load
+          if (input.value) {
+            input.classList.add("has-value");
+          }
+
+          // Check on change
+          input.addEventListener("change", function () {
+            if (this.value) {
+              this.classList.add("has-value");
+            } else {
+              this.classList.remove("has-value");
+            }
+          });
+
+          // For text inputs, also check on input
+          if (
+            input.type === "text" ||
+            input.type === "email" ||
+            input.type === "tel"
+          ) {
+            input.addEventListener("input", function () {
+              if (this.value) {
+                this.classList.add("has-value");
+              } else {
+                this.classList.remove("has-value");
+              }
+            });
+          }
+        });
+
+      // Form submission
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Registration submitted successfully!");
+        });
+    </script>
+  </body>
+</html>
