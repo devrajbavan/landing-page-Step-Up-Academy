@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StepUp Academy | Student Payment</title>
+    <meta
+      name="description"
+      content="Complete payment for StepUp Academy courses."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="payment-page">
+    <div class="payment-container">
+      <div class="payment-card">
+        <!-- Header -->
+        <div class="payment-header">
+          <h1>Course Payment Completion</h1>
+        </div>
+
+        <!-- Body with split layout -->
+        <div class="payment-body">
+          <!-- Left side - Form -->
+          <div class="payment-form-section">
+            <form id="paymentForm" class="modern-form">
+              <!-- Email -->
+              <div class="input-wrapper">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                />
+                <label for="email">Email Address</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Phone -->
+              <div class="input-wrapper">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  autocomplete="tel"
+                />
+                <label for="phone">Phone Number</label>
+                <div class="input-border"></div>
+              </div>
+              
+              <!-- Enrollment ID -->
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="enrollmentId"
+                  name="enrollmentId"
+                  required
+                  autocomplete="enrollmentId"
+                />
+                <label for="enrollmentId">Enrollment ID</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Date of Birth -->
+              <div class="input-wrapper">
+                <input type="date" id="dob" name="dob" required />
+                <label for="dob" class="date-label">Date of Birth</label>
+                <div class="input-border"></div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="submit-button">
+                <span>Fetch Details</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+        <!-- Student Details Container (Hidden by default) -->
+        <div
+        class="payment-container"
+        id="paymentDetailsContainer"
+        style="display: none; margin-top: 2rem; animation: fadeIn 0.5s ease-out">
+        <div class="payment-card">
+            <div class="payment-header">
+            <h1>STUDENTS COURSE DETAILS</h1>
+            </div>
+            <div class="payment-body" style="min-height: auto; padding: 2rem">
+            <div class="student-details-grid" style="width: 100%">
+                <div class="detail-item">
+                  <span class="detail-label">Mobile Number</span>
+                  <span class="detail-value" id="detailsPhone">-</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Enrollment ID</span>
+                  <span class="detail-value" id="detailsEnrollmentId">-</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Email Address</span>
+                  <span class="detail-value" id="detailsEmail">-</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Enrolled Course</span>
+                  <span class="detail-value" id="detailsCourse">-</span>
+                </div>
+            </div>
+
+                <!-- Payment Summary -->
+                <div class="payment-summary-grid">
+                  <div class="summary-item">
+                    <span class="summary-label">Total Amount</span>
+                    <span class="summary-value" id="summaryTotal">₹25,000</span>
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-label">Amount Paid</span>
+                    <span class="summary-value" id="summaryPaid">₹10,000</span>
+                  </div>
+                  <div class="summary-item">
+                    <span class="summary-label">Balance Amount</span>
+                    <span class="summary-value highlight" id="summaryBalance">₹15,000</span>
+                  </div>
+                </div>
+
+                <!-- Installment Table -->
+                <div class="installment-section">
+                  <h3>Installment Details</h3>
+                  <div class="table-responsive">
+                    <table class="installment-table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Due Date</th>
+                          <th>Amount</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="installmentTableBody">
+                        <!-- Rows will be populated by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      // Add 'has-value' class when input has content
+      document
+        .querySelectorAll(".modern-form input, .modern-form select")
+        .forEach((input) => {
+          // Check on load
+          if (input.value) {
+            input.classList.add("has-value");
+          }
+
+          // Check on change
+          input.addEventListener("change", function () {
+            if (this.value) {
+              this.classList.add("has-value");
+            } else {
+              this.classList.remove("has-value");
+            }
+          });
+
+          // For text inputs, also check on input
+          if (input.type === "email" || input.type === "tel") {
+            input.addEventListener("input", function () {
+              if (this.value) {
+                this.classList.add("has-value");
+              } else {
+                this.classList.remove("has-value");
+              }
+            });
+          }
+        });
+
+      // Form submission handler
+      document
+        .getElementById("paymentForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent page refresh
+
+          // Get form values
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const enrollmentId = document.getElementById("enrollmentId").value;
+          const DOB = document.getElementById("dob").value;
+
+          // Populate details container
+          document.getElementById("detailsPhone").textContent = phone;
+          document.getElementById("detailsEmail").textContent = email;
+          document.getElementById("detailsEnrollmentId").textContent = enrollmentId;
+
+          // Set default/placeholder values
+          document.getElementById("detailsCourse").textContent = "NEET 2025 Crash Course";
+
+          // Populate Installment Table (Mock Data)
+          const installments = [
+            { id: 1, date: "15 Oct 2025", amount: "₹10,000", status: "Paid" },
+            { id: 2, date: "15 Nov 2025", amount: "₹5,000", status: "Pending" },
+            { id: 3, date: "15 Dec 2025", amount: "₹5,000", status: "Pending" },
+            { id: 4, date: "15 Jan 2026", amount: "₹5,000", status: "Pending" }
+          ];
+
+          const tableBody = document.getElementById("installmentTableBody");
+          tableBody.innerHTML = ""; // Clear existing
+
+          installments.forEach(inst => {
+            const row = document.createElement("tr");
+            
+            let actionHtml = '-';
+            let statusClass = 'status-pending';
+            
+            if (inst.status === 'Paid') {
+              statusClass = 'status-paid';
+              actionHtml = '<span class="paid-check"><i class="fas fa-check-circle"></i> Paid</span>';
+            } else {
+              // Only the first pending installment gets the Pay Now button
+              const firstPending = installments.find(i => i.status === 'Pending');
+              if (inst.id === firstPending.id) {
+                 actionHtml = `<button class="btn-pay-now" onclick="proceedToPayInstallment(${inst.id}, '${inst.amount}')">Pay Now</button>`;
+              } else {
+                 actionHtml = '<span class="locked-text"><i class="fas fa-lock"></i> Locked</span>';
+              }
+            }
+
+            row.innerHTML = `
+              <td>${inst.id}</td>
+              <td>${inst.date}</td>
+              <td>${inst.amount}</td>
+              <td><span class="status-badge ${statusClass}">${inst.status}</span></td>
+              <td>${actionHtml}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+
+          // Show the details container
+          const container = document.getElementById("paymentDetailsContainer");
+          container.style.display = "block";
+
+          // Scroll to the details container
+          container.scrollIntoView({ behavior: "smooth" });
+        });
+
+      // Proceed to payment function (General)
+      function proceedToPayment() {
+         const firstPending = document.querySelector('.btn-pay-now');
+         if(firstPending) firstPending.click();
+      }
+
+      // Pay specific installment
+      function proceedToPayInstallment(id, amount) {
+        const email = document.getElementById("detailsEmail").textContent;
+        const course = document.getElementById("detailsCourse").textContent;
+        
+        // Show processing message
+        if (confirm(
+          `Processing payment for Installment #${id}\nEmail: ${email}\nAmount: ${amount}\n\nRedirecting to payment gateway...\n\nClick OK to proceed.`
+        )) {
+          const isSuccess = Math.random() > 0.3;
+          
+          if (isSuccess) {
+            // Generate mock transaction ID
+            const txnId = 'TXN' + Date.now();
+            
+            // Redirect to success page with parameters
+            window.location.href = `payment-success.html?txnId=${txnId}&amount=${amount.replace('₹', '')}&method=UPI&course=${encodeURIComponent(course)}`;
+          } else {
+            // Generate mock reference ID
+            const refId = 'REF' + Date.now();
+            const reasons = [
+              'Transaction declined by bank',
+              'Insufficient funds',
+              'Payment timeout',
+              'Network error'
+            ];
+            const reason = reasons[Math.floor(Math.random() * reasons.length)];
+            
+            // Redirect to failure page with parameters
+            window.location.href = `payment-failure.html?refId=${refId}&amount=${amount.replace('₹', '')}&reason=${encodeURIComponent(reason)}`;
+          }
+        }
+      }
+
+      // Add fade in animation
+      const style = document.createElement("style");
+      style.innerHTML = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

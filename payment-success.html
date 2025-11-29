@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Successful | StepUp Academy</title>
+    <meta
+      name="description"
+      content="Your payment has been processed successfully."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="payment-page">
+    <div class="payment-container">
+      <div class="payment-card result-card">
+        <!-- Success Icon with Animation -->
+        <div class="result-icon success-icon">
+          <div class="icon-circle">
+            <i class="fas fa-check"></i>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="result-header">
+          <h1>Payment Successful!</h1>
+          <p class="result-subtitle">
+            Your payment has been processed successfully
+          </p>
+        </div>
+
+        <!-- Transaction Details -->
+        <div class="transaction-details">
+          <div class="detail-row-result">
+            <span class="detail-label">Transaction ID</span>
+            <span class="detail-value" id="transactionId">TXN123456789</span>
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Amount Paid</span>
+            <span class="detail-value highlight" id="amountPaid">₹5,000</span>
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Payment Method</span>
+            <span class="detail-value" id="paymentMethod">UPI</span>
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Date & Time</span>
+            <span class="detail-value" id="paymentDate">-</span>
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Course</span>
+            <span class="detail-value" id="courseName"
+              >NEET 2025 Crash Course</span
+            >
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+          <button class="btn-primary" onclick="downloadReceipt()">
+            <i class="fas fa-download"></i>
+            <span>Download Receipt</span>
+          </button>
+          <button class="btn-secondary" onclick="goToHome()">
+            <i class="fas fa-home"></i>
+            <span>Back to Home</span>
+          </button>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="result-footer">
+          <p>
+            <i class="fas fa-envelope"></i>
+            A confirmation email has been sent to your registered email address
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Set current date and time
+      const now = new Date();
+      const dateOptions = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+      document.getElementById("paymentDate").textContent =
+        now.toLocaleDateString("en-IN", dateOptions);
+
+      // Get URL parameters if passed from payment gateway
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("txnId")) {
+        document.getElementById("transactionId").textContent =
+          urlParams.get("txnId");
+      }
+      if (urlParams.get("amount")) {
+        document.getElementById("amountPaid").textContent =
+          "₹" + urlParams.get("amount");
+      }
+      if (urlParams.get("method")) {
+        document.getElementById("paymentMethod").textContent =
+          urlParams.get("method");
+      }
+      if (urlParams.get("course")) {
+        document.getElementById("courseName").textContent =
+          urlParams.get("course");
+      }
+
+      // Download receipt function
+      function downloadReceipt() {
+        alert(
+          "Receipt download functionality will be implemented with backend integration.\n\nReceipt will include:\n- Transaction details\n- Student information\n- Course details\n- Payment breakdown"
+        );
+      }
+
+      // Go to home function
+      function goToHome() {
+        window.location.href = "index.html";
+      }
+
+      // Add success animation on load
+      window.addEventListener("load", function () {
+        document.querySelector(".success-icon").classList.add("animate");
+      });
+    </script>
+  </body>
+</html>

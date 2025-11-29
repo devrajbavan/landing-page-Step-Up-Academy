@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Failed | StepUp Academy</title>
+    <meta
+      name="description"
+      content="Payment processing encountered an issue."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="payment-page">
+    <div class="payment-container">
+      <div class="payment-card result-card">
+        <!-- Failure Icon with Animation -->
+        <div class="result-icon failure-icon">
+          <div class="icon-circle">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+
+        <!-- Failure Message -->
+        <div class="result-header">
+          <h1>Payment Failed</h1>
+          <p class="result-subtitle">
+            We couldn't process your payment. Please try again.
+          </p>
+        </div>
+
+        <!-- Error Details -->
+        <div class="transaction-details">
+          <div class="detail-row-result">
+            <span class="detail-label">Reference ID</span>
+            <span class="detail-value" id="referenceId">REF987654321</span>
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Attempted Amount</span>
+            <span class="detail-value" id="attemptedAmount">₹5,000</span>
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Failure Reason</span>
+            <span class="detail-value error-text" id="failureReason"
+              >Transaction declined by bank</span
+            >
+          </div>
+          <div class="detail-row-result">
+            <span class="detail-label">Date & Time</span>
+            <span class="detail-value" id="failureDate">-</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="result-actions">
+          <button class="btn-primary" onclick="retryPayment()">
+            <i class="fas fa-redo"></i>
+            <span>Retry Payment</span>
+          </button>
+          <button class="btn-secondary" onclick="contactSupport()">
+            <i class="fas fa-headset"></i>
+            <span>Contact Support</span>
+          </button>
+        </div>
+
+        <!-- Support Info -->
+        <div class="result-footer support-info">
+          <h4><i class="fas fa-info-circle"></i> Need Help?</h4>
+          <p>
+            If you continue to face issues, please contact our support team:
+          </p>
+          <div class="support-contacts">
+            <div class="support-item">
+              <i class="fas fa-phone"></i>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="support-item">
+              <i class="fas fa-envelope"></i>
+              <span>support@stepupacademy.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Set current date and time
+      const now = new Date();
+      const dateOptions = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      };
+      document.getElementById("failureDate").textContent =
+        now.toLocaleDateString("en-IN", dateOptions);
+
+      // Get URL parameters if passed from payment gateway
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("refId")) {
+        document.getElementById("referenceId").textContent =
+          urlParams.get("refId");
+      }
+      if (urlParams.get("amount")) {
+        document.getElementById("attemptedAmount").textContent =
+          "₹" + urlParams.get("amount");
+      }
+      if (urlParams.get("reason")) {
+        document.getElementById("failureReason").textContent =
+          urlParams.get("reason");
+      }
+
+      // Retry payment function
+      function retryPayment() {
+        // Go back to payment page
+        window.location.href = "payment-page.html";
+      }
+
+      // Contact support function
+      function contactSupport() {
+        alert(
+          "Support Contact Options:\n\n" +
+            "📞 Phone: +91 98765 43210\n" +
+            "📧 Email: support@stepupacademy.com\n" +
+            "💬 Live Chat: Available on our website\n\n" +
+            "Our support team is available 24/7 to assist you."
+        );
+      }
+
+      // Add failure animation on load
+      window.addEventListener("load", function () {
+        document.querySelector(".failure-icon").classList.add("animate");
+      });
+    </script>
+  </body>
+</html>
